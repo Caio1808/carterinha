@@ -27,7 +27,6 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.senaisp.carteirinhadigital.R
@@ -186,13 +185,7 @@ fun LoginScreen(
                 modifier = Modifier.height(62.dp)
             )
 
-            uiState.erroMessage?.let { error ->
-                Text(
-                    text = error,
-                    color = Color(0xFFFF6B6B),
-                    style = MaterialTheme.typography.bodySmall
-                )
-            }
+
 
             Spacer(
                 modifier = Modifier.height(24.dp)

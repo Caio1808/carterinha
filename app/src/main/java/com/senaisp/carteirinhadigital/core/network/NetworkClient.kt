@@ -1,7 +1,5 @@
 package com.senaisp.carteirinhadigital.core.network
 
-import com.senaisp.carteirinhadigital.core.auth.AuthTokenStore
-import com.senaisp.carteirinhadigital.BuildConfig
 import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient

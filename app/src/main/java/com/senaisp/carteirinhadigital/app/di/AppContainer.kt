@@ -1,10 +1,9 @@
 package com.senaisp.carteirinhadigital.app.di
 
-import com.senaisp.carteirinhadigital.core.auth.AuthTokenStore
-import com.senaisp.carteirinhadigital.core.auth.SessionTokenStore
-import com.senaisp.carteirinhadigital.feature.login.data.repository.LoginRepository
-import com.senaisp.carteirinhadigital.feature.unidadecurriculares.domain.repository.UnidadeCurricularRepository
 
+import com.senaisp.carteirinhadigital.core.auth.SessionTokenStore
+import com.senaisp.carteirinhadigital.feature.aluno.unidadescurriculares.domain.repository.UnidadeCurricularRepository
+import com.senaisp.carteirinhadigital.feature.login.domain.repository.LoginRepository
 interface AppContainer {
     val sessionTokenStore : SessionTokenStore
 

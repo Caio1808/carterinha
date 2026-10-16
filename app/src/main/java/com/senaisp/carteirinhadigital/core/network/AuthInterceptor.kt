@@ -1,6 +1,5 @@
 package com.senaisp.carteirinhadigital.core.network
 
-import com.senaisp.carteirinhadigital.core.auth.AuthTokenStore
 import com.senaisp.carteirinhadigital.core.auth.SessionTokenStore
 import okhttp3.Response
 import okhttp3.Interceptor

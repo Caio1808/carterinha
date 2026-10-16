@@ -1,17 +1,15 @@
 package com.senaisp.carteirinhadigital.app.di
 
-import com.senaisp.carteirinhadigital.core.auth.AuthTokenStore
-import com.senaisp.carteirinhadigital.BuildConfig
-import com.senaisp.carteirinhadigital.core.auth.InMemoryAuthTokenStore
 import com.senaisp.carteirinhadigital.core.auth.SessionTokenStore
 import com.senaisp.carteirinhadigital.core.network.NetworkClient
+import com.senaisp.carteirinhadigital.feature.aluno.unidadescurriculares.data.remote.service.UnidadeCurricularApi
+import com.senaisp.carteirinhadigital.feature.aluno.unidadescurriculares.data.repository.ApiUnidadeCurricularRepositoryImpl
+import com.senaisp.carteirinhadigital.feature.aluno.unidadescurriculares.domain.repository.UnidadeCurricularRepository
 import com.senaisp.carteirinhadigital.feature.login.data.remote.service.AuthApi
 import com.senaisp.carteirinhadigital.feature.login.data.repository.ApiLoginRepositoryImpl
-import com.senaisp.carteirinhadigital.feature.login.data.repository.FakeLoginRepositoryImpl
-import com.senaisp.carteirinhadigital.feature.login.data.repository.LoginRepository
-import com.senaisp.carteirinhadigital.feature.unidadecurriculares.data.remote.service.UnidadeCurricularApi
-import com.senaisp.carteirinhadigital.feature.unidadecurriculares.data.repository.ApiUnidadeCurricularRepositoryImpl
-import com.senaisp.carteirinhadigital.feature.unidadecurriculares.domain.repository.UnidadeCurricularRepository
+import com.senaisp.carteirinhadigital.feature.login.data.repository.FakeAuthRepository
+
+import com.senaisp.carteirinhadigital.feature.login.domain.repository.LoginRepository
 import kotlin.getValue
 
 class DefaultAppContainer : AppContainer {
@@ -34,7 +32,7 @@ class DefaultAppContainer : AppContainer {
     }
     override val loginRepository : LoginRepository by lazy {
         if (USE_FAKE_LOGIN_REPOSITORY ) {
-            FakeLoginRepositoryImpl()
+            FakeAuthRepository()
         } else {
             ApiLoginRepositoryImpl(
                 api =authApi
