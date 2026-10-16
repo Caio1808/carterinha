@@ -23,7 +23,8 @@ import com.senaisp.carteirinhadigital.feature.login.domain.model.UsuarioLogado
 fun CarteirinhaScreen(
     usuarioLogado: UsuarioLogado,
     modifier: Modifier = Modifier,
-    isDarkTheme: Boolean = MaterialTheme.colorScheme.background.luminance() < 0.5f
+    isDarkTheme: Boolean = MaterialTheme.colorScheme.background.luminance() < 0.5f,
+    dadosCarteirinha : String = "https://sp.senai.br/aluno/12345678"
 ) {
     // Define qual imagem usar com base no tema ativo
     val imagemFundo = if (isDarkTheme) {
@@ -42,8 +43,7 @@ fun CarteirinhaScreen(
             modifier = Modifier.fillMaxSize(),
             contentScale = ContentScale.Crop
         )
-
-        Column(
+       Column(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.SpaceEvenly,
             modifier = Modifier

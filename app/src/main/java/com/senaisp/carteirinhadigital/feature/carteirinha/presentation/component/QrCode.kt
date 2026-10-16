@@ -1,23 +1,27 @@
 package com.senaisp.carteirinhadigital.feature.carteirinha.presentation.component
 
-import androidx.compose.foundation.Image
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.graphics.asImageBitmap
-import androidx.compose.ui.Modifier
-import androidx.core.graphics.set
-import androidx.core.graphics.createBitmap
-
 import android.graphics.Bitmap
 import android.graphics.Color
+import androidx.compose.foundation.Image
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.asImageBitmap
+import androidx.core.graphics.createBitmap
+import androidx.core.graphics.set
 import com.google.zxing.BarcodeFormat
 import com.google.zxing.EncodeHintType
 import com.google.zxing.qrcode.QRCodeWriter
+
 @Composable
 fun QrCode(
     conteudo: String,
     modifier: Modifier = Modifier
 ) {
-    val bitmap = gerarQrCode(conteudo)
+    // O remember evita que o QR Code seja recalculado a cada recomposição
+    val bitmap = remember(conteudo) {
+        gerarQrCode(conteudo)
+    }
 
     Image(
         bitmap = bitmap.asImageBitmap(),
@@ -26,13 +30,11 @@ fun QrCode(
     )
 }
 
-
 fun gerarQrCode(
     conteudo: String,
     tamanho: Int = 512,
     margem: Int = 1
 ): Bitmap {
-
     val hints = mapOf(
         EncodeHintType.MARGIN to margem
     )
@@ -56,4 +58,3 @@ fun gerarQrCode(
 
     return bitmap
 }
-

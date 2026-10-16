@@ -227,4 +227,3 @@ fun LoginScreen(
         }
     }
 }
-//Código feito por Caio Gogojoli
