@@ -1,4 +1,19 @@
 package com.senaisp.carteirinhadigital.feature.professor.unidadescurriculares.presentation.factory
 
-class UnidadeCurricularViewModelFactory {
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
+import com.senaisp.carteirinhadigital.feature.aluno.unidadescurriculares.domain.repository.UnidadeCurricularRepository
+import com.senaisp.carteirinhadigital.feature.aluno.unidadescurriculares.presentation.UnidadeCurricularViewModel
+
+class UnidadeCurricularViewModelFactory(
+    private val repository: UnidadeCurricularRepository
+) : ViewModelProvider.Factory {
+
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
+        if (modelClass.isAssignableFrom(UnidadeCurricularViewModel::class.java)) {
+            @Suppress("UNCHECKED_CAST")
+            return UnidadeCurricularViewModel(repository = repository) as T
+        }
+        throw IllegalArgumentException("ViewModel desconhecido: ${modelClass.name}")
+    }
 }
