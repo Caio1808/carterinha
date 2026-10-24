@@ -14,7 +14,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.senaisp.carteirinhadigital.feature.aluno.unidadescurriculares.domain.model.UnidadeCurricular
+import com.senaisp.carteirinhadigital.feature.professor.unidadescurriculares.domain.model.UnidadeCurricular
 
 @Composable
 fun UnidadeCurricularCard(
@@ -22,6 +22,7 @@ fun UnidadeCurricularCard(
     unidadeCurricular: UnidadeCurricular
 ) {
     Card(
+        modifier = modifier.fillMaxWidth(),
         shape = RoundedCornerShape(16.dp),
         colors = CardDefaults.cardColors(
             containerColor = MaterialTheme.colorScheme.surface
@@ -29,8 +30,7 @@ fun UnidadeCurricularCard(
         elevation = CardDefaults.cardElevation(defaultElevation = 3.dp)
     ) {
         Column(
-            modifier = Modifier
-                .padding(16.dp),
+            modifier = Modifier.padding(16.dp),
             verticalArrangement = Arrangement.spacedBy(8.dp)
         ) {
             Text(
@@ -38,28 +38,34 @@ fun UnidadeCurricularCard(
                 style = MaterialTheme.typography.titleLarge
             )
             Text(
-                text = "Professor: ${unidadeCurricular.professor}",
+                text = "Turma: ${unidadeCurricular.turma}",
                 style = MaterialTheme.typography.bodyMedium
             )
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
-                Text(text = "N1: ${unidadeCurricular.nota1}")
-                Text(text = "N2: ${unidadeCurricular.nota2}")
-                Text(text = "Média: ${unidadeCurricular.media}")
+                Text(
+                    text = "Aulas: ${unidadeCurricular.aulasRealizadas}/${unidadeCurricular.quantidadeAulas}",
+                    style = MaterialTheme.typography.bodyMedium
+                )
+                Text(
+                    text = "${unidadeCurricular.cargaHoraria}h",
+                    style = MaterialTheme.typography.bodyMedium
+                )
             }
-            Text(
-                text = "Faltas: ${unidadeCurricular.faltas}",
-                style = MaterialTheme.typography.bodyMedium,
-                color = MaterialTheme.colorScheme.primary
-            )
+            if (unidadeCurricular.diasSemana.isNotEmpty()) {
+                Text(
+                    text = "${unidadeCurricular.diasSemana.joinToString(", ")} (${unidadeCurricular.horarioInicio} - ${unidadeCurricular.horarioFim})",
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                )
+            }
         }
     }
 }
-@Preview(
-    showBackground = true
-)
+
+@Preview(showBackground = true)
 @Composable
 fun UnidadeCurricularCardPreview() {
     UnidadeCurricularCard(
@@ -71,7 +77,7 @@ fun UnidadeCurricularCardPreview() {
             cargaHoraria = 75,
             quantidadeAulas = 100,
             aulasRealizadas = 40,
-            diasSemana = ["SEGUNDA", "QUARTA"],
+            diasSemana = listOf("SEGUNDA", "QUARTA"),
             horarioInicio = "19:00",
             horarioFim = "22:30"
         )

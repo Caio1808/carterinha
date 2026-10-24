@@ -18,8 +18,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.senaisp.carteirinhadigital.feature.aluno.unidadescurriculares.presentation.UnidadeCurricularViewModel
-import com.senaisp.carteirinhadigital.feature.aluno.unidadescurriculares.presentation.component.UnidadeCurricularCard
+import com.senaisp.carteirinhadigital.feature.professor.unidadescurriculares.presentation.UnidadeCurricularViewModel
+import com.senaisp.carteirinhadigital.feature.professor.unidadescurriculares.presentation.component.UnidadeCurricularCard
 
 @Composable
 fun UnidadeCurricularScreen(
@@ -57,8 +57,7 @@ fun UnidadeCurricularScreen(
                     color = MaterialTheme.colorScheme.error
                 )
                 Button(
-                    modifier = Modifier
-                        .padding(top = 16.dp),
+                    modifier = Modifier.padding(top = 16.dp),
                     onClick = {
                         viewModel.carregar()
                     }
@@ -85,8 +84,7 @@ fun UnidadeCurricularScreen(
                         horizontal = 16.dp,
                         vertical = 12.dp
                     ),
-                verticalArrangement = Arrangement
-                    .spacedBy(12.dp)
+                verticalArrangement = Arrangement.spacedBy(12.dp)
             ) {
                 items(
                     items = uiState.unidades,

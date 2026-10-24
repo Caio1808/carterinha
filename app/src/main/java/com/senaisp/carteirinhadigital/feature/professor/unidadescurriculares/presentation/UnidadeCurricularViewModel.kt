@@ -2,8 +2,7 @@ package com.senaisp.carteirinhadigital.feature.professor.unidadescurriculares.pr
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.senaisp.carteirinhadigital.feature.aluno.unidadescurriculares.domain.repository.UnidadeCurricularRepository
-import com.senaisp.carteirinhadigital.feature.aluno.unidadescurriculares.presentation.UnidadeCurricularUiState
+import com.senaisp.carteirinhadigital.feature.professor.unidadescurriculares.domain.repository.UnidadeCurricularRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -11,10 +10,11 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 class UnidadeCurricularViewModel(
-    private val repository : UnidadeCurricularRepository
+    private val repository: UnidadeCurricularRepository
 ) : ViewModel() {
     private val _uiState = MutableStateFlow(UnidadeCurricularUiState())
-    val uiState:StateFlow<UnidadeCurricularUiState> = _uiState.asStateFlow()
+    val uiState: StateFlow<UnidadeCurricularUiState> = _uiState.asStateFlow()
+
     fun carregar() {
         viewModelScope.launch {
             _uiState.update {

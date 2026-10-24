@@ -1,6 +1,6 @@
 package com.senaisp.carteirinhadigital.feature.professor.unidadescurriculares.data.remote.dto
 
-import com.senaisp.carteirinhadigital.feature.aluno.unidadescurriculares.domain.model.UnidadeCurricular
+import com.senaisp.carteirinhadigital.feature.professor.unidadescurriculares.domain.model.UnidadeCurricular
 import kotlinx.serialization.Serializable
 
 @Serializable
@@ -12,7 +12,7 @@ data class UnidadeCurricularDto(
     val cargaHoraria: Int,
     val quantidadeAulas: Int,
     val aulasRealizadas: Int,
-    val diasSemana: Array<String>,
+    val diasSemana: List<String>,
     val horarioInicio: String,
     val horarioFim: String
 ) {

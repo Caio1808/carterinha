@@ -8,7 +8,7 @@ data class UnidadeCurricular(
     val cargaHoraria: Int,
     val quantidadeAulas: Int,
     val aulasRealizadas: Int,
-    val diasSemana: Array<String>,
+    val diasSemana: List<String>,
     val horarioInicio: String,
     val horarioFim: String
 )

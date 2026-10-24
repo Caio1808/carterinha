@@ -2,8 +2,8 @@ package com.senaisp.carteirinhadigital.feature.professor.unidadescurriculares.pr
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.senaisp.carteirinhadigital.feature.aluno.unidadescurriculares.domain.repository.UnidadeCurricularRepository
-import com.senaisp.carteirinhadigital.feature.aluno.unidadescurriculares.presentation.UnidadeCurricularViewModel
+import com.senaisp.carteirinhadigital.feature.professor.unidadescurriculares.domain.repository.UnidadeCurricularRepository
+import com.senaisp.carteirinhadigital.feature.professor.unidadescurriculares.presentation.UnidadeCurricularViewModel
 
 class UnidadeCurricularViewModelFactory(
     private val repository: UnidadeCurricularRepository

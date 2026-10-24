@@ -1,8 +1,8 @@
 package com.senaisp.carteirinhadigital.feature.professor.unidadescurriculares.data.repository
 
-import com.senaisp.carteirinhadigital.feature.aluno.unidadescurriculares.data.remote.service.UnidadeCurricularApi
-import com.senaisp.carteirinhadigital.feature.aluno.unidadescurriculares.domain.model.UnidadeCurricular
-import com.senaisp.carteirinhadigital.feature.aluno.unidadescurriculares.domain.repository.UnidadeCurricularRepository
+import com.senaisp.carteirinhadigital.feature.professor.unidadescurriculares.data.remote.service.UnidadeCurricularApi
+import com.senaisp.carteirinhadigital.feature.professor.unidadescurriculares.domain.model.UnidadeCurricular
+import com.senaisp.carteirinhadigital.feature.professor.unidadescurriculares.domain.repository.UnidadeCurricularRepository
 import retrofit2.HttpException
 import java.io.IOException
 
