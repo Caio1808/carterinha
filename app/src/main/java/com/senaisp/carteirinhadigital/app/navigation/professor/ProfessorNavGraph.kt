@@ -15,6 +15,10 @@ import com.senaisp.carteirinhadigital.app.ui.AppShell
 import com.senaisp.carteirinhadigital.feature.login.domain.model.PerfilAcesso
 import com.senaisp.carteirinhadigital.feature.login.domain.model.UsuarioLogado
 import com.senaisp.carteirinhadigital.feature.professor.home.presentation.screen.HomeProfessorScreen
+import com.senaisp.carteirinhadigital.feature.professor.turmas.domain.repository.TurmaRepository
+import com.senaisp.carteirinhadigital.feature.professor.turmas.presentation.TurmaViewModel
+import com.senaisp.carteirinhadigital.feature.professor.turmas.presentation.factory.TurmaViewModelFactory
+import com.senaisp.carteirinhadigital.feature.professor.turmas.presentation.screen.TurmaScreen
 import com.senaisp.carteirinhadigital.feature.professor.unidadescurriculares.domain.repository.UnidadeCurricularRepository
 import com.senaisp.carteirinhadigital.feature.professor.unidadescurriculares.presentation.UnidadeCurricularViewModel
 import com.senaisp.carteirinhadigital.feature.professor.unidadescurriculares.presentation.factory.UnidadeCurricularViewModelFactory
@@ -26,6 +30,7 @@ fun NavGraphBuilder.professorNavGraph(
     usuarioLogadoFlow: StateFlow<UsuarioLogado?>,
     darkTheme: Boolean,
     unidadeCurricularRepository: UnidadeCurricularRepository,
+    turmaRepository: TurmaRepository,
     onDarkThemeChange: (Boolean) -> Unit,
     onLogout: () -> Unit,
     onSessaoAusente: () -> Unit,
@@ -50,11 +55,51 @@ fun NavGraphBuilder.professorNavGraph(
                 ) { innerPadding ->
                     HomeProfessorScreen(
                         usuarioLogado = usuario,
-                        onTurmasClick = {},
+                        onTurmasClick = {
+                            navController.navigate(ProfessorRoutes.TURMAS)
+                        },
                         onUnidadesCurricularesClick = {
                             navController.navigate(ProfessorRoutes.UNIDADES_CURRICULARES)
                         },
                         modifier = Modifier.fillMaxSize().padding(innerPadding)
+                    )
+                }
+            }
+        }
+
+        composable(route = ProfessorRoutes.TURMAS) {
+            ProfileGuard(
+                usuarioFlow = usuarioLogadoFlow,
+                perfilEsperado = PerfilAcesso.PROFESSOR,
+                onSessaoAusente = onSessaoAusente,
+                onPerfilInvalido = onPerfilInvalido
+            ) { usuario ->
+                val factory = remember(turmaRepository) {
+                    TurmaViewModelFactory(
+                        repository = turmaRepository
+                    )
+                }
+
+                val turmaViewModel: TurmaViewModel = viewModel(
+                    factory = factory
+                )
+
+                AppShell(
+                    title = "Turmas",
+                    usuarioLogado = usuario,
+                    canNavigateBack = true,
+                    darkTheme = darkTheme,
+                    onDarkThemeChange = onDarkThemeChange,
+                    onNavigateBack = {
+                        navController.popBackStack()
+                    },
+                    onLogout = onLogout
+                ) { innerPadding ->
+                    TurmaScreen(
+                        viewModel = turmaViewModel,
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .padding(innerPadding)
                     )
                 }
             }

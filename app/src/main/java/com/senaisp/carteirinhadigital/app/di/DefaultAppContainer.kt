@@ -9,6 +9,9 @@ import com.senaisp.carteirinhadigital.feature.login.data.remote.service.AuthApi
 import com.senaisp.carteirinhadigital.feature.login.data.repository.ApiLoginRepositoryImpl
 import com.senaisp.carteirinhadigital.feature.login.data.repository.FakeAuthRepository
 import com.senaisp.carteirinhadigital.feature.login.domain.repository.LoginRepository
+import com.senaisp.carteirinhadigital.feature.professor.turmas.data.remote.service.TurmaApi
+import com.senaisp.carteirinhadigital.feature.professor.turmas.data.repository.ApiTurmaRepositoryImpl
+import com.senaisp.carteirinhadigital.feature.professor.turmas.domain.repository.TurmaRepository
 import com.senaisp.carteirinhadigital.feature.professor.unidadescurriculares.data.remote.service.UnidadeCurricularApi as ProfessorUnidadeCurricularApi
 import com.senaisp.carteirinhadigital.feature.professor.unidadescurriculares.data.repository.ApiUnidadeCurricularRepositoryImpl as ProfessorUnidadeCurricularRepositoryImpl
 import com.senaisp.carteirinhadigital.feature.professor.unidadescurriculares.domain.repository.UnidadeCurricularRepository as ProfessorUnidadeCurricularRepository
@@ -36,6 +39,11 @@ class DefaultAppContainer : AppContainer {
             ProfessorUnidadeCurricularApi::class.java
         )
     }
+    private val turmaApi: TurmaApi by lazy {
+        networkClient.createAuthenticated(
+            TurmaApi::class.java
+        )
+    }
     override val loginRepository: LoginRepository by lazy {
         if (USE_FAKE_LOGIN_REPOSITORY) {
             FakeAuthRepository()
@@ -53,6 +61,11 @@ class DefaultAppContainer : AppContainer {
     override val professorUnidadeCurricularRepository: ProfessorUnidadeCurricularRepository by lazy {
         ProfessorUnidadeCurricularRepositoryImpl(
             api = professorUnidadeCurricularApi
+        )
+    }
+    override val turmaRepository: TurmaRepository by lazy {
+        ApiTurmaRepositoryImpl(
+            api = turmaApi
         )
     }
 

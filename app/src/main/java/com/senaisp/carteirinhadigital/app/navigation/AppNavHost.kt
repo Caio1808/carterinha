@@ -97,6 +97,7 @@ fun AppNavHost(
             navController = navController,
             usuarioLogadoFlow = sessionViewModel.usuarioLogado,
             unidadeCurricularRepository = container.professorUnidadeCurricularRepository,
+            turmaRepository = container.turmaRepository,
             darkTheme = darkTheme,
             onDarkThemeChange = onDarkThemeChange,
             onLogout = {
